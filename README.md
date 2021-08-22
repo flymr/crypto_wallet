@@ -10,14 +10,14 @@ docker-compose up -d --build<br>
 docker-compose exec web pytest<br>
 
 ### alternatively
-python manage.py migrate<br>
-pytest # run test<br>
-python manage.py runserver<br>
 cd crypto_wallet<br>
 pip install virtualenv<br>
 virtualenv venv<br>
 source venv/bin/activate<br>
 pip install -r requirements.txt<br>
+python manage.py migrate<br>
+pytest # run test<br>
+python manage.py runserver<br>
 
 ### schema
 
