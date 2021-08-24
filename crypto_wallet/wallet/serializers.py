@@ -29,17 +29,13 @@ class TransferWalletSerializer(serializers.Serializer):
     _to = serializers.CharField()
     currency = serializers.ChoiceField(choices=CURRENCIES.CHOICES)
 
-    def to_internal_value(self, data):
-        wallet = get_or_none(Wallet, address=data.get('_from'))
+    def validate(self, attrs):
+        wallet = get_or_none(Wallet, address=attrs.get('_from'))
         balance = nodes[wallet.currency].address_balance(wallet.address) if wallet else None
-        data.update(
+        attrs.update(
             balance=balance,
             wallet=wallet
         )
-        return data
-
-    def validate(self, attrs):
-        self.fields['currency'].run_validation(attrs['currency'])
         wallet = attrs['wallet']
         if not attrs['wallet']:
             raise serializers.ValidationError('Wallet is invalid')

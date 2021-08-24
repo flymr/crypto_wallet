@@ -24,7 +24,7 @@ from .wallet import urls as wallet_urls
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Social network API",
+        title="Crypto Wallet API",
         default_version='v1',
         description="social network endpoint",
         contact=openapi.Contact(email="flymr92@gmail.com"),
